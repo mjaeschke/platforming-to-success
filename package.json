@@ -1,0 +1,19 @@
+{
+  "name": "platforming-to-success",
+  "version": "1.0.0",
+  "description": "a super awesome plat former game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjaeschke/platforming-to-success.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mjaeschke/platforming-to-success/issues"
+  },
+  "homepage": "https://github.com/mjaeschke/platforming-to-success#readme"
+}
