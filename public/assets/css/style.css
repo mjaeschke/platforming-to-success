@@ -2,9 +2,8 @@ h1 {
   font-size: 80px;
 }
 
-body {
-  background: black;
-}
+/* body {
+} */
 
 #gameScreen {
   border: 1px solid black;
