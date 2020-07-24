@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 
 var app = express();
 var PORT = process.env.PORT || 8080;
@@ -7,6 +8,7 @@ var db = require("./models");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+// app.use(express.static(path.join(__dirname, "./public/assets/css/style.css")));
 
 app.use(express.static("public"));
 
