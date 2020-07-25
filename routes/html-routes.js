@@ -18,7 +18,7 @@ module.exports = function (app) {
     res.render("help");
   });
 
-  app.get("/leaderboard", function (req, res) {
+  app.get("/leaderboards", function (req, res) {
     res.render("leaderboard");
   });
 
