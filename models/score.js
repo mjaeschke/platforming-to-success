@@ -5,5 +5,8 @@ module.exports = function (sequelize, DataTypes) {
     bestTime: DataTypes.STRING,
   });
 
+  Score.associate = function (models) {
+    Score.belongsTo(models.User);
+  };
   return Score;
 };
