@@ -1,10 +1,87 @@
-h1 {
-  font-size: 80px;
+#canvas {
+  border: 5px ridge rgb(171, 185, 219);
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 800px;
+  height: 600px;
 }
 
-/* body {
-} */
+* {
+  background-color: rgb(247, 249, 255);
+  font-family: "Mukta", sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-#gameScreen {
-  border: 1px solid black;
+.container {
+  margin-top: 0;
+  padding-top: 0;
+  display: flex;
+  padding-left: 25%;
+  padding-right: 25%;
+  padding-bottom: 15px;
+}
+
+.container > li {
+  flex: 1;
+  list-style-type: none;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  background-color: rgb(103, 117, 151);
+  color: white;
+  text-align: center;
+}
+
+.container > li > a,
+.container > li > a:visited {
+  color: rgb(242, 246, 255);
+  background-color: rgb(103, 117, 151);
+  text-decoration: none;
+}
+
+#header-div {
+  width: 100%;
+  height: 80px;
+  text-align: center;
+}
+
+#help-div {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 33%;
+  text-align: center;
+}
+
+#top-of-page {
+  background-color: black;
+  width: 100%;
+  height: 50px;
+}
+
+h1 {
+  font-weight: normal;
+}
+
+#leaderboards-div {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  text-align: justify;
+}
+
+#leaderboards-header-div {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  text-align: center;
 }
