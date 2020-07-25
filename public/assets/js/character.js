@@ -14,4 +14,4 @@ class Character {
     ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
 }
-module.exports = character;
+module.exports = Character;

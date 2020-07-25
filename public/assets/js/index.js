@@ -1,4 +1,6 @@
-var character = require("./character");
+//var character = require("./character");
 
-let canvas = $("#gameScreen");
-let ctx = canvas.getContext("2d");
+let ctx = document.querySelector("gameScreen").getContext("2d");
+
+ctx.canvas.height = 180;
+ctx.canvas.width = 320;
