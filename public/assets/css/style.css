@@ -64,6 +64,24 @@
   height: 50px;
 }
 
-#mainH1 {
+h1 {
   font-weight: normal;
+}
+
+#leaderboards-div {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  text-align: justify;
+}
+
+#leaderboards-header-div {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  text-align: center;
 }
