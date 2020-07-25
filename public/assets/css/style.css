@@ -1,10 +1,15 @@
-h1 {
-  font-size: 80px;
-}
-
-/* body {
-} */
-
 #gameScreen {
   border: 1px solid black;
+}
+
+.container {
+  display: flex;
+}
+
+.search {
+  flex: 1;
+}
+
+.container > li {
+  flex: 1;
 }
