@@ -1,5 +1,5 @@
-#gameScreen {
-  border: 1px solid black;
+#canvas {
+  border: 5px ridge rgb(171, 185, 219);
   padding-left: 0;
   padding-right: 0;
   margin-left: auto;
