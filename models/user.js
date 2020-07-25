@@ -4,13 +4,13 @@ module.exports = function (sequelize, DataTypes) {
     password: DataTypes.STRING,
   });
 
-  // Author.associate = function(models) {
-  //   // Associating Author with Posts
-  //   // When an Author is deleted, also delete any associated Posts
-  //   Author.hasMany(models.Post, {
-  //     onDelete: "cascade"
-  //   });
-  // };
+  User.associate = function (models) {
+    // Associating User with Score
+    // When a User is deleted, also delete any associated Scores
+    User.hasMany(models.Score, {
+      onDelete: "cascade",
+    });
+  };
 
   return User;
 };
