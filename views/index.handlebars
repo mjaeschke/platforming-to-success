@@ -11,7 +11,7 @@
         x_v: 0,
         y_v: 0,
         jump: true,
-        height: 20,
+        height: 30,
         width: 20
     };
     // The status of the arrow keys
@@ -21,7 +21,7 @@
         up: false,
     };
     // The friction and gravity to show realistic movements    
-    var gravity = 0.6;
+    var gravity = 0.8;
     var friction = 0.7;
     // The number of platforms
     var num = 2;
@@ -30,7 +30,7 @@
     // Function to render the canvas
     function rendercanvas() {
         ctx.fillStyle = "#F0F8FF";
-        ctx.fillRect(0, 0, 270, 270);
+        ctx.fillRect(0, 0, 800, 1000);
     }
     // Function to render the player
     function renderplayer() {
@@ -60,31 +60,31 @@
     // This function will be called when a key on the keyboard is pressed
     function keydown(e) {
         // 37 is the code for the left arrow key
-        if (e.keyCode == 37) {
+        if (e.keyCode == 37 || e.keyCode == 65) {
             keys.left = true;
         }
         // 37 is the code for the up arrow key
-        if (e.keyCode == 38) {
+        if (e.keyCode == 38 || e.keyCode == 32 || e.keyCode == 87) {
             if (player.jump == false) {
                 player.y_v = -10;
             }
         }
         // 39 is the code for the right arrow key
-        if (e.keyCode == 39) {
+        if (e.keyCode == 39 || e.keyCode == 68) {
             keys.right = true;
         }
     }
     // This function is called when the pressed key is released
     function keyup(e) {
-        if (e.keyCode == 37) {
+        if (e.keyCode == 37 || e.keyCode == 65) {
             keys.left = false;
         }
-        if (e.keyCode == 38) {
+        if (e.keyCode == 38 || e.keyCode == 32 || e.keyCode == 87) {
             if (player.y_v < -2) {
                 player.y_v = -3;
             }
         }
-        if (e.keyCode == 39) {
+        if (e.keyCode == 39 || e.keyCode == 68) {
             keys.right = false;
         }
     }
@@ -128,8 +128,8 @@
     }
     canvas = document.getElementById("canvas");
     ctx = canvas.getContext("2d");
-    ctx.canvas.height = 270;
-    ctx.canvas.width = 270;
+    ctx.canvas.height = 800;
+    ctx.canvas.width = 600;
     createplat();
     // Adding the event listeners
     document.addEventListener("keydown", keydown);
