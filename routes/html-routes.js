@@ -1,6 +1,7 @@
 const path = require("path");
 var exphbs = require("express-handlebars");
 const express = require("express");
+var User = require("../models/user.js");
 
 module.exports = function (app) {
   app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -11,6 +12,10 @@ module.exports = function (app) {
   //   );
 
   app.get("/", function (req, res) {
+    User.findAll({}).then(function (results) {
+      res.json(results);
+      console.log(results);
+    });
     res.render("index");
   });
 
