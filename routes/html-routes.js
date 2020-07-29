@@ -8,10 +8,6 @@ module.exports = function (app) {
   app.engine("handlebars", exphbs({ defaultLayout: "main" }));
   app.set("view engine", "handlebars");
 
-  //   app.use(
-  //     express.static(path.join(__dirname, "./public/assets/css/style.css"))
-  //   );
-
   app.get("/", function (req, res) {
     res.render("index");
   });
@@ -29,8 +25,8 @@ module.exports = function (app) {
       hbsObject = {
         scores: results,
       };
-      // console.log(hbsObject);
-      // console.log("here are the raw results: " + results[1].username);
+      hbsObject.scores.slice(0, 3);
+      console.log(hbsObject);
       res.render("leaderboard", hbsObject);
       // res.json(results);
     });
