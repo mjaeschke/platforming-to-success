@@ -24,6 +24,7 @@ module.exports = function (app) {
     var hbsObject = {};
     db.Score.findAll({
       raw: true,
+      order: [["score", "ASC"]],
     }).then(function (results) {
       hbsObject = {
         scores: results,
