@@ -20,7 +20,8 @@ module.exports = function (app) {
     var hbsObject = {};
     db.Score.findAll({
       raw: true,
-      order: [["score", "ASC"]],
+      order: [["score", "DESC"]],
+      limit: 10,
     }).then(function (results) {
       hbsObject = {
         scores: results,
