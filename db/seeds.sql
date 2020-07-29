@@ -1,3 +1,5 @@
+USE platforming_db;
+
 INSERT INTO users
     (username, password, createdAt, updatedAt)
 VALUES
@@ -7,4 +9,5 @@ VALUES
 INSERT INTO scores
     (username, score, bestTime, createdAt, updatedAt)
 VALUES
-    ("username1", 1800, 838, 0, 0);
+    ("username1", 1800, 838, 0, 0),
+    ("username2", 2600, 750, 0, 0);

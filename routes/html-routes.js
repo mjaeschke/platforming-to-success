@@ -2,6 +2,7 @@ const path = require("path");
 var exphbs = require("express-handlebars");
 const express = require("express");
 var User = require("../models/user.js");
+var db = require("../models");
 
 module.exports = function (app) {
   app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -12,10 +13,6 @@ module.exports = function (app) {
   //   );
 
   app.get("/", function (req, res) {
-    User.findAll({}).then(function (results) {
-      res.json(results);
-      console.log(results);
-    });
     res.render("index");
   });
 
@@ -24,18 +21,17 @@ module.exports = function (app) {
   });
 
   app.get("/leaderboards", function (req, res) {
-    res.render("leaderboard");
+    var hbsObject = {};
+    db.Score.findAll({
+      raw: true,
+    }).then(function (results) {
+      hbsObject = {
+        scores: results,
+      };
+      // console.log(hbsObject);
+      // console.log("here are the raw results: " + results[1].username);
+      res.render("leaderboard", hbsObject);
+      // res.json(results);
+    });
   });
-
-  //   app.get("/cms", function (req, res) {
-  //     res.sendFile(path.join(__dirname, "../public/cms.html"));
-  //   });
-
-  //   app.get("/blog", function (req, res) {
-  //     res.sendFile(path.join(__dirname, "../public/blog.html"));
-  //   });
-
-  //   app.get("/authors", function (req, res) {
-  //     res.sendFile(path.join(__dirname, "../public/author-manager.html"));
-  //   });
 };

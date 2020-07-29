@@ -29,7 +29,7 @@ function rendercanvas() {
 // Function to render the player
 function renderplayer() {
   ctx.fillStyle = "#F08080";
-  ctx.fillRect(player.x - 20, player.y - 20, player.width, player.height);
+  ctx.fillRect(player.x - 30, player.y - 30, player.width, player.height);
 }
 // Function to create platforms
 function createplat() {
