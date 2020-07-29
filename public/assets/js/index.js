@@ -1,12 +1,12 @@
 // The attributes of the player.
 var player = {
-  x: 200,
-  y: 200,
+  x: 110,
+  y: 700,
   x_v: 0,
   y_v: 0,
   jump: true,
-  height: 30,
-  width: 20,
+  height: 75,
+  width: 50,
 };
 // The status of the arrow keys
 var keys = {
@@ -15,48 +15,76 @@ var keys = {
   up: false,
 };
 // The friction and gravity to show realistic movements
-var gravity = 0.8;
-var friction = 0.7;
+var gravity = 0.4;
+var friction = 0.5;
 // The number of platforms
-var num = 2;
+var num = 20;
 // The platforms
 var platforms = [];
 // Function to render the canvas
 function rendercanvas() {
   ctx.fillStyle = "#F0F8FF";
-  ctx.fillRect(0, 0, 800, 1000);
+  ctx.fillRect(0, 0, 2000, 1000);
 }
 // Function to render the player
 function renderplayer() {
   ctx.fillStyle = "#F08080";
-  ctx.fillRect(player.x - 20, player.y - 20, player.width, player.height);
+  ctx.fillRect(player.x - 50, player.y - 75, player.width, player.height);
 }
 // Function to create platforms
-function createplat() {
+function createFloor() {
   for (i = 0; i < num; i++) {
     platforms.push({
       x: 100 * i,
-      y: 200 + 30 * i,
-      width: 110,
-      height: 15,
+      y: 800,
+      width: 100,
+      height: 100,
     });
   }
 }
+// creates an ascending staircase
+//function createAStair() {
+//  for (i = 0; i < num; i++) {
+//    platforms.push({
+//      x: 50 * i,
+//      y: 800 - 100 * i,
+//      width: 80,
+//      height: 60,
+//    });
+//  }
+//}
+// creates a descending staircase
+//function createDStair() {
+//  for (i = 0; i < num; i++) {
+//    platforms.push({
+//      x: 50 * i,
+//      y: 800 - 100 * i,
+//      width: 80,
+//      height: 60,
+//    });
+//  }
+//}
+
+function renderFall() {
+  ctx.fillStyle = "white";
+  ctx.fillRect(
+    platforms[8].x,
+    platforms[8].y,
+    platforms[8].width,
+    platforms[8].height
+  );
+}
 // Function to render platforms
 function renderplat() {
-  ctx.fillStyle = "#45597E";
-  ctx.fillRect(
-    platforms[0].x,
-    platforms[0].y,
-    platforms[0].width,
-    platforms[0].height
-  );
-  ctx.fillRect(
-    platforms[1].x,
-    platforms[1].y,
-    platforms[1].width,
-    platforms[1].height
-  );
+  for (i = 0; i < num; i++) {
+    ctx.fillStyle = "#45597E";
+    ctx.fillRect(
+      platforms[i].x,
+      platforms[i].y,
+      platforms[i].width,
+      platforms[i].height
+    );
+  }
 }
 // This function will be called when a key on the keyboard is pressed
 function keydown(e) {
@@ -110,36 +138,33 @@ function loop() {
   player.x += player.x_v;
   // A simple code that checks for collions with the platform
   let i = -1;
-  if (
-    platforms[0].x < player.x &&
-    player.x < platforms[0].x + platforms[0].width &&
-    platforms[0].y < player.y &&
-    player.y < platforms[0].y + platforms[0].height
-  ) {
-    i = 0;
-  }
-  if (
-    platforms[1].x < player.x &&
-    player.x < platforms[1].x + platforms[1].width &&
-    platforms[1].y < player.y &&
-    player.y < platforms[1].y + platforms[1].height
-  ) {
-    i = 1;
-  }
-  if (i > -1) {
-    player.jump = false;
-    player.y = platforms[i].y;
+  for (n = 0; n < num; n++) {
+    if (
+      platforms[n].x < player.x &&
+      player.x < platforms[n].x + platforms[n].width &&
+      platforms[n].y < player.y &&
+      player.y < platforms[n].y + platforms[n].height
+    ) {
+      i = n;
+    }
+    if (i > -1) {
+      player.jump = false;
+      player.y = platforms[i].y;
+    }
   }
   // Rendering the canvas, the player and the platforms
   rendercanvas();
   renderplayer();
   renderplat();
+  renderFall();
+  createAStair();
 }
 canvas = document.getElementById("canvas");
 ctx = canvas.getContext("2d");
-ctx.canvas.height = 800;
-ctx.canvas.width = 600;
-createplat();
+ctx.canvas.height = 1000;
+ctx.canvas.width = 1000;
+createFloor();
+console.log(player);
 // Adding the event listeners
 document.addEventListener("keydown", keydown);
 document.addEventListener("keyup", keyup);
