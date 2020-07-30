@@ -32,4 +32,12 @@ module.exports = function (app) {
       // res.json(results);
     });
   });
+
+  app.get("/login", function (req, res) {
+    res.render("login");
+  });
+
+  app.get("/createaccount", function (req, res) {
+    res.render("createaccount");
+  });
 };
