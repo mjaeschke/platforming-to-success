@@ -14,6 +14,7 @@ var keys = {
   left: false,
   up: false,
 };
+
 // The friction and gravity to show realistic movements
 var gravity = 0.4;
 var friction = 0.5;
@@ -21,15 +22,38 @@ var friction = 0.5;
 var num = 20;
 // The platforms
 var platforms = [];
+var stairs = [];
+var stairsD = [];
+
 // Function to render the canvas
 function rendercanvas() {
   ctx.fillStyle = "#F0F8FF";
-  ctx.fillRect(0, 0, 2000, 1000);
+  ctx.fillRect(0, 0, 2000, 2000);
 }
 // Function to render the player
 function renderplayer() {
   ctx.fillStyle = "#F08080";
   ctx.fillRect(player.x - 50, player.y - 75, player.width, player.height);
+}
+function createAStair() {
+  for (i = 3; i < 8; i++) {
+    stairs.push({
+      x: 100 * i,
+      y: 825 - 30 * i,
+      width: 100,
+      height: 100,
+    });
+  }
+}
+function createDStair() {
+  for (i = 9; i < 14; i++) {
+    stairsD.push({
+      x: 100 * i,
+      y: 350 + 30 * i,
+      width: 100,
+      height: 100,
+    });
+  }
 }
 // Function to create platforms
 function createFloor() {
@@ -42,28 +66,6 @@ function createFloor() {
     });
   }
 }
-// creates an ascending staircase
-//function createAStair() {
-//  for (i = 0; i < num; i++) {
-//    platforms.push({
-//      x: 50 * i,
-//      y: 800 - 100 * i,
-//      width: 80,
-//      height: 60,
-//    });
-//  }
-//}
-// creates a descending staircase
-//function createDStair() {
-//  for (i = 0; i < num; i++) {
-//    platforms.push({
-//      x: 50 * i,
-//      y: 800 - 100 * i,
-//      width: 80,
-//      height: 60,
-//    });
-//  }
-//}
 
 function renderFall() {
   ctx.fillStyle = "white";
@@ -73,6 +75,23 @@ function renderFall() {
     platforms[8].width,
     platforms[8].height
   );
+}
+function renderAStair() {
+  for (i = 0; i < 5; i++) {
+    ctx.fillStyle = "#45597E";
+    ctx.fillRect(stairs[i].x, stairs[i].y, stairs[i].width, stairs[i].height);
+  }
+}
+function renderDStair() {
+  for (i = 0; i < 5; i++) {
+    ctx.fillStyle = "#45597E";
+    ctx.fillRect(
+      stairsD[i].x,
+      stairsD[i].y,
+      stairsD[i].width,
+      stairsD[i].height
+    );
+  }
 }
 // Function to render platforms
 function renderplat() {
@@ -138,7 +157,7 @@ function loop() {
   player.x += player.x_v;
   // A simple code that checks for collions with the platform
   let i = -1;
-  for (n = 0; n < num; n++) {
+  for (n = 0; n < 8; n++) {
     if (
       platforms[n].x < player.x &&
       player.x < platforms[n].x + platforms[n].width &&
@@ -152,18 +171,38 @@ function loop() {
       player.y = platforms[i].y;
     }
   }
-  // Rendering the canvas, the player and the platforms
+  for (n = 9; n < num; n++) {
+    if (
+      platforms[n].x < player.x &&
+      player.x < platforms[n].x + platforms[n].width &&
+      platforms[n].y < player.y &&
+      player.y < platforms[n].y + platforms[n].height
+    ) {
+      i = n;
+    }
+    if (i > -1) {
+      player.jump = false;
+      player.y = platforms[i].y;
+    }
+  }
+
+  //Rendering the canvas, the player and the platforms
+
   rendercanvas();
   renderplayer();
   renderplat();
   renderFall();
-  createAStair();
+  renderAStair();
+  renderDStair();
 }
 canvas = document.getElementById("canvas");
 ctx = canvas.getContext("2d");
-ctx.canvas.height = 1000;
-ctx.canvas.width = 1000;
+
+ctx.canvas.height = 2000;
+ctx.canvas.width = 2000;
 createFloor();
+createAStair();
+createDStair();
 console.log(player);
 // Adding the event listeners
 document.addEventListener("keydown", keydown);
