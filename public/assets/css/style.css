@@ -91,3 +91,7 @@ h2 {
 #leaderboards-ul {
   list-style-type: none;
 }
+
+.hidden {
+  display: none;
+}
