@@ -64,7 +64,8 @@
   height: 50px;
 }
 
-h1 {
+h1,
+h2 {
   font-weight: normal;
 }
 
@@ -73,8 +74,9 @@ h1 {
   padding-right: 0;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 10px;
   width: 50%;
-  text-align: justify;
+  text-align: center;
 }
 
 #leaderboards-header-div {
@@ -84,4 +86,8 @@ h1 {
   margin-right: auto;
   width: 50%;
   text-align: center;
+}
+
+#leaderboards-ul {
+  list-style-type: none;
 }
