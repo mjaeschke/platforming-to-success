@@ -148,13 +148,6 @@ boxes.push({
   height: 50,
   color: '#655643'
 });
-//boxes.push({
-  //x: 600,
-  //y: 200,
-  //width: 60,
-  //height: 10,
-  //color: '#655643'
-//});
 
 canvas.width = width;
 canvas.height = height;
