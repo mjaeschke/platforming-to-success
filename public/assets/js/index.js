@@ -21,6 +21,7 @@ var friction = 0.7;
 var num = 2;
 // The platforms
 var platforms = [];
+var powerups =[];
 // Function to render the canvas
 function rendercanvas() {
   ctx.fillStyle = "#F0F8FF";
@@ -29,14 +30,14 @@ function rendercanvas() {
 // Function to render the player
 function renderplayer() {
   ctx.fillStyle = "#F08080";
-  ctx.fillRect(player.x - 30, player.y - 30, player.width, player.height);
+  ctx.fillRect(player.x - 20, player.y - 30, player.width, player.height);
 }
 // Function to create platforms
 function createplat() {
   for (i = 0; i < num; i++) {
     platforms.push({
       x: 100 * i,
-      y: 200 + 30 * i,
+      y: 200 + (30 * i),
       width: 110,
       height: 15,
     });
@@ -58,6 +59,8 @@ function renderplat() {
     platforms[1].height
   );
 }
+//POWERUPS
+
 // This function will be called when a key on the keyboard is pressed
 function keydown(e) {
   // 37 is the code for the left arrow key
