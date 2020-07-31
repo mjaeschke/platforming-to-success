@@ -18,34 +18,38 @@
 
 .container {
   margin-top: 0;
-  padding-top: 0;
+  padding-top: 10px;
   display: flex;
   padding-left: 25%;
   padding-right: 25%;
-  padding-bottom: 15px;
+  padding-bottom: 10px;
 }
 
 .container > li {
+  margin-top: 5px;
   flex: 1;
   list-style-type: none;
   border-style: solid;
-  border-color: black;
+  border-color: rgb(166, 178, 207);
+  border-radius: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
   border-width: 1px;
-  background-color: rgb(103, 117, 151);
+  background-color: rgb(217, 224, 241);
   color: white;
   text-align: center;
 }
 
 .container > li > a,
 .container > li > a:visited {
-  color: rgb(242, 246, 255);
-  background-color: rgb(103, 117, 151);
+  color: rgb(117, 125, 144);
+  background-color: rgb(217, 224, 241);
   text-decoration: none;
 }
 
 #header-div {
   width: 100%;
-  height: 80px;
+  height: 40px;
   text-align: center;
 }
 
@@ -98,5 +102,18 @@ h2 {
 
 #signedInAs {
   opacity: 0.5;
+  text-align: center;
+}
+
+h2 {
+  font-family: "Roboto Mono", monospace;
+  font-size: 20px;
+}
+
+#mainSignupContainer,
+#mainLoginContainer {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
   text-align: center;
 }

@@ -4,7 +4,7 @@ var passport = require("../config/passport");
 module.exports = function (app) {
   app.post("/api/login", passport.authenticate("local"), function (req, res) {
     res.json(req.user);
-    console.log("maybe?? please fucking god " + req.user.username);
+    // console.log("maybe?? please fucking god " + req.user.username);
   });
 
   app.get("/api/users", function (req, res) {

@@ -31,7 +31,6 @@ $(document).ready(function () {
     })
       .then(function (data) {
         window.location.replace("/");
-        // If there's an error, handle it by throwing up a bootstrap alert
       })
       .catch(handleLoginErr);
   }

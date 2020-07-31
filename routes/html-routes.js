@@ -29,7 +29,7 @@ module.exports = function (app) {
         scores: results,
       };
       hbsObject.scores.slice(0, 3);
-      console.log(hbsObject);
+      // console.log(hbsObject);
       res.render("leaderboard", hbsObject);
       // res.json(results);
     });
