@@ -4,6 +4,7 @@ var passport = require("../config/passport");
 module.exports = function (app) {
   app.post("/api/login", passport.authenticate("local"), function (req, res) {
     res.json(req.user);
+    console.log("maybe?? please fucking god " + req.user.username);
   });
 
   app.get("/api/users", function (req, res) {
@@ -14,7 +15,7 @@ module.exports = function (app) {
 
   app.post("/api/signup", function (req, res) {
     db.User.create({
-      email: req.body.email,
+      username: req.body.username,
       password: req.body.password,
     })
       .then(function () {
@@ -30,10 +31,10 @@ module.exports = function (app) {
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
-      // Otherwise send back the user's email and id
+      // Otherwise send back the user's username and id
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
-        email: req.user.email,
+        username: req.user.username,
         id: req.user.id,
       });
     }

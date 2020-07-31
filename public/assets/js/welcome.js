@@ -5,7 +5,8 @@ $(document).ready(function () {
   });
 
   $.get("/api/user_data").then(function (data) {
-    $(".member-name").text(data.email);
-    console.log("here is what we are looking for: " + data.email);
+    $("#member-name").text(data.username);
+    console.log("here is what we are looking for: " + data.username);
+    console.log(data.username);
   });
 });

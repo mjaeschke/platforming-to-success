@@ -95,3 +95,8 @@ h2 {
 .hidden {
   display: none;
 }
+
+#signedInAs {
+  opacity: 0.5;
+  text-align: center;
+}
