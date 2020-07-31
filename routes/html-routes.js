@@ -4,11 +4,13 @@ const express = require("express");
 var User = require("../models/user.js");
 var db = require("../models");
 
+var isAuthenticated = require("../config/middleware/isAuthenticated");
+
 module.exports = function (app) {
   app.engine("handlebars", exphbs({ defaultLayout: "main" }));
   app.set("view engine", "handlebars");
 
-  app.get("/", function (req, res) {
+  app.get("/", isAuthenticated, function (req, res) {
     res.render("index");
   });
 
@@ -37,7 +39,11 @@ module.exports = function (app) {
     res.render("login");
   });
 
-  app.get("/createaccount", function (req, res) {
-    res.render("createaccount");
+  app.get("/signup", function (req, res) {
+    res.render("signup");
+  });
+
+  app.get("/welcome", isAuthenticated, function (req, res) {
+    res.render("welcome");
   });
 };
