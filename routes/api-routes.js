@@ -57,4 +57,17 @@ module.exports = function (app) {
       res.json(results);
     });
   });
+
+  app.post("/api/scores", function (req, res) {
+    db.Score.create({
+      username: req.body.username,
+      score: req.body.score,
+    });
+    // .then(function () {
+    //   res.redirect("/");
+    // });
+    // .catch(function (err) {
+    //   res.status(401).json(err);
+    // });
+  });
 };
