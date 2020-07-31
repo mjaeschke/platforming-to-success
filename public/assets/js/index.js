@@ -1,12 +1,12 @@
 // The attributes of the player.
 var player = {
   x: 110,
-  y: 700,
+  y: 1000,
   x_v: 0,
   y_v: 0,
   jump: true,
   height: 75,
-  width: 50,
+  width: 25,
 };
 // The status of the arrow keys
 var keys = {
@@ -19,11 +19,10 @@ var keys = {
 var gravity = 0.4;
 var friction = 0.5;
 // The number of platforms
-var num = 20;
+var num = 22;
 // The platforms
 var platforms = [];
-var stairs = [];
-var stairsD = [];
+var pillers = [];
 
 // Function to render the canvas
 function rendercanvas() {
@@ -33,26 +32,28 @@ function rendercanvas() {
 // Function to render the player
 function renderplayer() {
   ctx.fillStyle = "#F08080";
-  ctx.fillRect(player.x - 50, player.y - 75, player.width, player.height);
+  ctx.fillRect(player.x, player.y - 75, player.width, player.height);
 }
-function createAStair() {
-  for (i = 3; i < 8; i++) {
-    stairs.push({
-      x: 100 * i,
-      y: 825 - 30 * i,
-      width: 100,
+//function to create a piller that will block the player from moving
+function createPiller() {
+  for (i = 0; i < num; i++) {
+    pillers.push({
+      x: 500 * i,
+      y: 1000 - 30 * i,
+      width: 50,
       height: 100,
     });
   }
 }
-function createDStair() {
-  for (i = 9; i < 14; i++) {
-    stairsD.push({
-      x: 100 * i,
-      y: 350 + 30 * i,
-      width: 100,
-      height: 100,
-    });
+function renderPiller() {
+  ctx.fillStyle = "#45597E";
+  for (i = 0; i < num; i++) {
+    ctx.fillRect(
+      pillers[i].x,
+      pillers[i].y,
+      pillers[i].width,
+      pillers[i].height
+    );
   }
 }
 // Function to create platforms
@@ -60,43 +61,49 @@ function createFloor() {
   for (i = 0; i < num; i++) {
     platforms.push({
       x: 100 * i,
-      y: 800,
+      y: 1000,
       width: 100,
       height: 100,
     });
   }
 }
 
-function renderFall() {
-  ctx.fillStyle = "white";
-  ctx.fillRect(
-    platforms[8].x,
-    platforms[8].y,
-    platforms[8].width,
-    platforms[8].height
-  );
-}
-function renderAStair() {
-  for (i = 0; i < 5; i++) {
-    ctx.fillStyle = "#45597E";
-    ctx.fillRect(stairs[i].x, stairs[i].y, stairs[i].width, stairs[i].height);
-  }
-}
-function renderDStair() {
-  for (i = 0; i < 5; i++) {
-    ctx.fillStyle = "#45597E";
+// Function to render platforms
+function renderFloor() {
+  ctx.fillStyle = "#45597E";
+  for (i = 0; i < 2; i++) {
     ctx.fillRect(
-      stairsD[i].x,
-      stairsD[i].y,
-      stairsD[i].width,
-      stairsD[i].height
+      platforms[i].x,
+      platforms[i].y,
+      platforms[i].width,
+      platforms[i].height
     );
   }
-}
-// Function to render platforms
-function renderplat() {
-  for (i = 0; i < num; i++) {
-    ctx.fillStyle = "#45597E";
+  for (i = 3; i < 4; i++) {
+    ctx.fillRect(
+      platforms[i].x,
+      platforms[i].y,
+      platforms[i].width,
+      platforms[i].height
+    );
+  }
+  for (i = 6; i < 9; i++) {
+    ctx.fillRect(
+      platforms[i].x,
+      platforms[i].y,
+      platforms[i].width,
+      platforms[i].height
+    );
+  }
+  for (i = 11; i < 12; i++) {
+    ctx.fillRect(
+      platforms[i].x,
+      platforms[i].y,
+      platforms[i].width,
+      platforms[i].height
+    );
+  }
+  for (i = 13; i < 22; i++) {
     ctx.fillRect(
       platforms[i].x,
       platforms[i].y,
@@ -156,8 +163,8 @@ function loop() {
   player.y += player.y_v;
   player.x += player.x_v;
   // A simple code that checks for collions with the platform
-  let i = -1;
-  for (n = 0; n < 8; n++) {
+  let i = -2;
+  for (n = 0; n < 2; n++) {
     if (
       platforms[n].x < player.x &&
       player.x < platforms[n].x + platforms[n].width &&
@@ -165,13 +172,9 @@ function loop() {
       player.y < platforms[n].y + platforms[n].height
     ) {
       i = n;
-    }
-    if (i > -1) {
-      player.jump = false;
-      player.y = platforms[i].y;
     }
   }
-  for (n = 9; n < num; n++) {
+  for (n = 3; n < 4; n++) {
     if (
       platforms[n].x < player.x &&
       player.x < platforms[n].x + platforms[n].width &&
@@ -180,20 +183,49 @@ function loop() {
     ) {
       i = n;
     }
-    if (i > -1) {
-      player.jump = false;
-      player.y = platforms[i].y;
+  }
+  for (n = 5; n < 9; n++) {
+    if (
+      platforms[n].x < player.x &&
+      player.x < platforms[n].x + platforms[n].width &&
+      platforms[n].y < player.y &&
+      player.y < platforms[n].y + platforms[n].height
+    ) {
+      i = n;
     }
+  }
+  for (n = 10; n < 12; n++) {
+    if (
+      platforms[n].x < player.x &&
+      player.x < platforms[n].x + platforms[n].width &&
+      platforms[n].y < player.y &&
+      player.y < platforms[n].y + platforms[n].height
+    ) {
+      i = n;
+    }
+  }
+  for (n = 13; n < num; n++) {
+    if (
+      platforms[n].x < player.x &&
+      player.x < platforms[n].x + platforms[n].width &&
+      platforms[n].y < player.y &&
+      player.y < platforms[n].y + platforms[n].height
+    ) {
+      i = n;
+    }
+  }
+
+  if (i > -1) {
+    player.jump = false;
+    player.y = platforms[i].y;
   }
 
   //Rendering the canvas, the player and the platforms
 
   rendercanvas();
   renderplayer();
-  renderplat();
-  renderFall();
-  renderAStair();
-  renderDStair();
+  renderFloor();
+  renderPiller();
 }
 canvas = document.getElementById("canvas");
 ctx = canvas.getContext("2d");
@@ -201,8 +233,7 @@ ctx = canvas.getContext("2d");
 ctx.canvas.height = 2000;
 ctx.canvas.width = 2000;
 createFloor();
-createAStair();
-createDStair();
+createPiller();
 console.log(player);
 // Adding the event listeners
 document.addEventListener("keydown", keydown);
