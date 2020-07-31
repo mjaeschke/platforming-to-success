@@ -4,11 +4,13 @@ const express = require("express");
 var User = require("../models/user.js");
 var db = require("../models");
 
+var isAuthenticated = require("../config/middleware/isAuthenticated");
+
 module.exports = function (app) {
   app.engine("handlebars", exphbs({ defaultLayout: "main" }));
   app.set("view engine", "handlebars");
 
-  app.get("/", function (req, res) {
+  app.get("/", isAuthenticated, function (req, res) {
     res.render("index");
   });
 
@@ -27,9 +29,21 @@ module.exports = function (app) {
         scores: results,
       };
       hbsObject.scores.slice(0, 3);
-      console.log(hbsObject);
+      // console.log(hbsObject);
       res.render("leaderboard", hbsObject);
       // res.json(results);
     });
+  });
+
+  app.get("/login", function (req, res) {
+    res.render("login");
+  });
+
+  app.get("/signup", function (req, res) {
+    res.render("signup");
+  });
+
+  app.get("/welcome", isAuthenticated, function (req, res) {
+    res.render("welcome");
   });
 };
