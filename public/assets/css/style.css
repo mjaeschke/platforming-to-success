@@ -117,3 +117,16 @@ h2 {
   width: 50%;
   text-align: center;
 }
+
+.form-control,
+#submit-button {
+  border: solid 1px;
+  opacity: 70%;
+}
+
+#submit-button {
+  width: 10%;
+  height: 10%;
+  border-radius: 100px;
+  opacity: 70%;
+}
