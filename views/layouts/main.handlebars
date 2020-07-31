@@ -7,20 +7,23 @@
     <title>Game</title>
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css" />
     <link href="https://fonts.googleapis.com/css2?family=Mukta&display=swap" rel="stylesheet"> <!-- google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
+    <!-- google font -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- jquery -->
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.24.0/dist/phaser.js"></script> <!-- phaser cdn -->
 </head>
 
 <body>
-    {{!-- <div id="top-of-page"></div> --}}
     <nav>
         <ul class="container">
             <li><a href="/">Home</a></li>
             <li><a href="/leaderboards">Leaderboards</a></li>
-            <li>Create an Account</li>
-            <li>Logout</li>
+            <li class="hidden" id="signup"><a href="/signup">Create an Account</a></li>
+            <li class="hidden" id="login"><a href="/login">Login</a></li>
+            <li class="unhidden" id="logout"><a href="/logout">Logout</a></li>
             <li><a href="/help">Help</a></li>
         </ul>
     </nav>
-
     {{{ body }}}
 </body>
 
