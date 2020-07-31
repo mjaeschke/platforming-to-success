@@ -22,6 +22,7 @@ var friction = 0.5;
 var num = 22;
 // The platforms
 var platforms = [];
+
 var pillers = [];
 
 // Function to render the canvas
@@ -55,12 +56,14 @@ function renderPiller() {
       pillers[i].height
     );
   }
+
 }
 // Function to create platforms
 function createFloor() {
   for (i = 0; i < num; i++) {
     platforms.push({
       x: 100 * i,
+
       y: 1000,
       width: 100,
       height: 100,
@@ -112,6 +115,8 @@ function renderFloor() {
     );
   }
 }
+//POWERUPS
+
 // This function will be called when a key on the keyboard is pressed
 function keydown(e) {
   // 37 is the code for the left arrow key
