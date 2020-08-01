@@ -178,7 +178,19 @@ function hitBomb(player, bomb) {
   player.anims.play("turn");
   gameOver = true;
 
-  saveScore(username, score);
+  scoreLength = score.toString().length;
+
+  if (scoreLength < 4) {
+    var str = "" + score;
+    while (str.length < 4) {
+      str = "0" + str;
+    }
+    score = str;
+    console.log(score);
+    saveScore(username, score);
+  } else {
+    saveScore(username, score);
+  }
 }
 
 function saveScore(username, score) {
