@@ -23,13 +23,13 @@ module.exports = function (app) {
     db.Score.findAll({
       raw: true,
       order: [["score", "DESC"]],
-      limit: 10,
+      limit: 15,
     }).then(function (results) {
       hbsObject = {
         scores: results,
       };
       hbsObject.scores.slice(0, 3);
-      // console.log(hbsObject);
+
       res.render("leaderboard", hbsObject);
       // res.json(results);
     });
