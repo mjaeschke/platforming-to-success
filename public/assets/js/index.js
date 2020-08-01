@@ -22,9 +22,9 @@ var friction = 0.5;
 var num = 22;
 // The platforms
 var platforms = [];
-
 var pillers = [];
 
+var powerups = [];
 // Function to render the canvas
 function rendercanvas() {
   ctx.fillStyle = "#F0F8FF";
@@ -56,7 +56,7 @@ function renderPiller() {
       pillers[i].height
     );
   }
-
+  ctx.fillRect(player.x - 20, player.y - 30, player.width, player.height);
 }
 // Function to create platforms
 function createFloor() {
