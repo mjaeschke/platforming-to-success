@@ -6,8 +6,8 @@ $.get("/api/user_data").then(function (data) {
 
 var config = {
   type: Phaser.AUTO,
-  width: 800,
-  height: 600,
+  width: 1280,
+  height: 720,
   physics: {
     default: "arcade",
     arcade: {
@@ -34,8 +34,9 @@ var scoreText;
 var game = new Phaser.Game(config);
 
 function preload() {
-  this.load.image("sky", "assets/sky.png");
-  this.load.image("ground", "assets/platform.png");
+  this.load.image("sky", "assets/background.jpg");
+  this.load.image("platforms", "assets/platform.jpg");
+  this.load.image("ground", "assets/floor.png");
   this.load.image("star", "assets/star.png");
   this.load.image("bomb", "assets/bomb.png");
   this.load.spritesheet("dude", "assets/dude.png", {
@@ -46,19 +47,21 @@ function preload() {
 
 function create() {
   //  A simple background for our game
-  this.add.image(400, 300, "sky");
+  this.add.image(640, 360, "sky");
 
   //  The platforms group contains the ground and the 2 ledges we can jump on
   platforms = this.physics.add.staticGroup();
 
   //  Here we create the ground.
   //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-  platforms.create(400, 568, "ground").setScale(2).refreshBody();
+  platforms.create(400, 700, "ground").setScale(5).refreshBody();
 
   //  Now let's create some ledges
-  platforms.create(600, 400, "ground");
-  platforms.create(50, 250, "ground");
-  platforms.create(750, 220, "ground");
+  platforms.create(600, 400, "platforms");
+  platforms.create(150, 500, "platforms");
+  platforms.create(1000, 500, "platforms");
+  platforms.create(50, 250, "platforms");
+  platforms.create(750, 220, "platforms");
 
   // The player and its settings
   player = this.physics.add.sprite(100, 450, "dude");
@@ -94,8 +97,8 @@ function create() {
   //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
   stars = this.physics.add.group({
     key: "star",
-    repeat: 11,
-    setXY: { x: 12, y: 0, stepX: 70 },
+    repeat: 15,
+    setXY: { x: 12, y: 0, stepX: 80 },
   });
 
   stars.children.iterate(function (child) {
@@ -108,7 +111,7 @@ function create() {
   //  The score
   scoreText = this.add.text(16, 16, "score: 0", {
     fontSize: "32px",
-    fill: "#000",
+    fill: "#d69340",
   });
 
   //  Collide the player and the stars with the platforms
@@ -165,10 +168,23 @@ function collectStar(player, star) {
         : Phaser.Math.Between(0, 400);
 
     var bomb = bombs.create(x, 16, "bomb");
+    var bomb2 = bombs.create(x, 16, "bomb");
+    var bomb3 = bombs.create(x, 16, "bomb");
+
     bomb.setBounce(1);
     bomb.setCollideWorldBounds(true);
     bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
     bomb.allowGravity = false;
+
+    bomb2.setBounce(1);
+    bomb2.setCollideWorldBounds(true);
+    bomb2.setVelocity(Phaser.Math.Between(-200, 200), 20);
+    bomb2.allowGravity = false;
+
+    bomb3.setBounce(1);
+    bomb3.setCollideWorldBounds(true);
+    bomb3.setVelocity(Phaser.Math.Between(-200, 200), 20);
+    bomb3.allowGravity = false;
   }
 }
 
